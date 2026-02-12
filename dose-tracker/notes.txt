@@ -1,0 +1,23 @@
+Manual Data:
+- Start date 
+- Registration number
+- Patient name
+- Patient age
+- Patient height
+- Patient weight
+- Hospital location
+- All Doses need to have the ability to be manually inputted, regardless of whether the dose period is constant
+
+Automatic Data/Calculations:
+- BSA
+- IBW
+- Adjusted BW
+- Adjusted BSA
+- Constant Dose Periods (TBD)
+- All Equations
+
+
+Things to Keep in Mind:
+- Efficiency is the most important thing they're looking for.
+- In the sheets, there's a column for dose 
+- Hippocratic Oath; privacy
