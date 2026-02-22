@@ -1,5 +1,11 @@
 PRAGMA foreign_keys = ON;
 
+CREATE TABLE users (
+    user_id INTEGER PRIMARY KEY AUTOINCREMENT
+    firstName VARCHAR(20) NOT NULL
+    lastName VARCHAR(20) NOT NULL
+)
+
 CREATE TABLE patients (
     patient_id INTEGER PRIMARY KEY AUTOINCREMENT
     firstName VARCHAR(20) NOT NULL
@@ -12,14 +18,9 @@ CREATE TABLE patients (
     hospital VARCHAR(20) NOT NULL
     timestamp DATETIME DEFAULT(CURRENT_TIMESTAMP)
 
-    FOREIGN KEY (patient_id) REFERENCES users(patient_id) 
+    user_id INTEGER NOT NULL
+
+    FOREIGN KEY (user_id) REFERENCES users(user_id) 
         ON DELETE CASCADE
         ON UPDATE CASCADE
-)
-
-CREATE TABLE users (
-    user_id INTEGER PRIMARY KEY AUTOINCREMENT
-    firstName VARCHAR(20) NOT NULL
-    lastName VARCHAR(20) NOT NULL
-    patient_id INTEGER NOT NULL
 )
