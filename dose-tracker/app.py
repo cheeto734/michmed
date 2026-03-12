@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import json
 import os
 from datetime import datetime
+import equations
 
 app = Flask(__name__, template_folder='.', static_folder='.')
 
@@ -35,6 +36,30 @@ def save_data():
         return jsonify({'status': 'success', 'message': 'Patient data saved'}), 200
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
+
+@app.route('/calculate', methods=['POST'])
+def calculate_metrics():
+    """Handle metric calculations"""
+    try:
+        data = request.get_json()
+        height = float(data["height"])
+        weight = float(data["weight"])
+        sex = data["sex"]
+        
+        bsa = equations.BSA(height, weight)
+        ibw = equations.IBW(height, sex)
+        adj_bw = equations.adj_BW(weight, ibw)
+        adj_bsa = equations.adj_BSA(height, weight)
+        
+        return jsonify({
+            "bsa": bsa,
+            "ibw": ibw,
+            "adj_bw": adj_bw,
+            "adj_bsa": adj_bsa
+        }), 200
+        
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': str(e)}), 500     
 
 if __name__ == '__main__':
     app.run(debug=True)

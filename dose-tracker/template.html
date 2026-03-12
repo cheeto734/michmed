@@ -29,6 +29,16 @@
         <label for="weight">Weight:</label><br>
         <input type="number" id="weight" name="weight" required><br><br>
 
+        <label for="sex">Sex:</label><br>
+        <label>
+            <input type="radio" name="sex" value="male" required>
+            Male
+        </label><br>
+        <label>
+            <input type="radio" name="sex" value="female" required>
+            Female
+        </label><br>
+
         <label for="startdate">Start date:</label><br>
         <input type="date" id="startdate" name="startdate" required><br><br>
 
@@ -62,15 +72,15 @@
         <caption>Calculations:</caption>
         <tr>
             <th>BSA</th>
-            <td>hello</td>
+            <td id="bsa"></td>
             <th>IBW</th>
-            <td>hello</td>
+            <td id="ibw"></td>
         </tr>
         <tr>
             <th>Adj. BW</th>
-            <td>hello</td>
+            <td id="adj_bw"></td>
             <th>Adj. BSA</th>
-            <td>hello</td>
+            <td id="adj_bsa"></td>
         </tr>
     </table>
 
@@ -124,6 +134,7 @@
             e.preventDefault();
             
             const location = document.querySelector('input[name="location"]:checked').value;
+            const sex = document.querySelector('input[name="sex"]:checked').value;
             const finalLocation = location === 'other' ? document.getElementById('otherLocation').value : location;
             
             const formData = {
@@ -133,11 +144,28 @@
                 age: document.getElementById('age').value,
                 height: document.getElementById('height').value,
                 weight: document.getElementById('weight').value,
+                sex: sex,
                 startDate: document.getElementById('startdate').value,
                 hospitalLocation: finalLocation,
                 submissionTime: new Date().toISOString()
             };
-            
+            fetch('/calculate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+
+                document.getElementById("bsa").textContent = data.bsa.toFixed(2);
+                document.getElementById("ibw").textContent = data.ibw.toFixed(2);
+                document.getElementById("adj_bw").textContent = data.adj_bw.toFixed(2);
+                document.getElementById("adj_bsa").textContent = data.adj_bsa.toFixed(2);
+
+            });
+
             fetch('/save-patient-data', {
                 method: 'POST',
                 headers: {
