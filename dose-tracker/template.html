@@ -132,7 +132,7 @@
         <caption>Dosage Table:</caption>
         <tr>
             <label for="date_made">Date Made:</label><br>
-            <input type="text" id="dose_date" name="dose_date" required><br>
+            <input type="text" id="date_made" name="date_made" required><br>
 
             <label for="drug">Drug and Dose:</label><br>
             <input type="text" id="drug" name="drug" required><br>
@@ -171,6 +171,16 @@
                 hospitalLocation: finalLocation,
                 submissionTime: new Date().toISOString()
             };
+
+            const tableData = {
+                dateMade: document.getElementById('date_made').value,
+                drug: document.getElementById('drug').value,
+                doseNum: document.getElementById('dose_num').value,
+                dueDate: document.getElementById('due_date').value,
+                timeDue: document.getElementById('time_due').value,
+                pChecked: document.getElementById('p_checked').value,
+
+            }
             fetch('/calculate', {
                 method: 'POST',
                 headers: {
@@ -194,6 +204,14 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
+            });
+
+            fetch('/save-table-data', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json' 
+                },
+                body: JSON.stringify(tableData)
             })
             .then(response => response.json())
             .then(data => {
