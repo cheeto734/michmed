@@ -9,6 +9,10 @@
 </head>
 
 <body>
+    {% if username %}
+    <p>Signed in as: {{ username }}</p>
+    {% endif %}
+
     <h2>TEMPLATE FORM</h2>
     <form id="patientForm">
         <label for="firstname">First name:</label><br>
