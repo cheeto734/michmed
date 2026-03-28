@@ -12,7 +12,7 @@
     {% if username %}
     <p>Signed in as: {{ username }}</p>
     {% endif %}
-
+    <a href="/patients">Home</a>
     <h2>TEMPLATE FORM</h2>
     <form id="patientForm">
         <label for="firstname">First name:</label><br>
@@ -72,54 +72,7 @@
     </form>
 
     <br><br>
-    <table>
-        <caption>Calculations:</caption>
-        <tr>
-            <th>BSA</th>
-            <td id="bsa"></td>
-            <th>IBW</th>
-            <td id="ibw"></td>
-        </tr>
-        <tr>
-            <th>Adj. BW</th>
-            <td id="adj_bw"></td>
-            <th>Adj. BSA</th>
-            <td id="adj_bsa"></td>
-        </tr>
-    </table>
-
-    </table>
-    <form id="dosageTable">
-        <table id="dosageRows">
-            <caption>Dosage Table:</caption>
-            <thead>
-                <tr>
-                    <th>Date Made</th>
-                    <th>Drug and Dose</th>
-                    <th>Dose #</th>
-                    <th>Due Date(s)</th>
-                    <th>Time(s) Due</th>
-                    <th>Final Product Checked</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="dosageTableBody">
-                <tr class="dosage-row">
-                    <td><input type="date" name="date_made[]" required></td>
-                    <td><input type="text" name="drug[]" required></td>
-                    <td><input type="number" name="dose_num[]" required></td>
-                    <td><input type="date" name="due_date[]" required></td>
-                    <td><input type="time" name="time_due[]" required></td>
-                    <td><input type="checkbox" name="p_checked[]"></td>
-                    <td><button type="button" class="remove-row-btn">Remove</button></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <button type="button" id="addRowBtn">+ Add Row</button>
-        <br><br>
-        <input type="submit" value="Submit">
-    </form>
+    
 
     <script>
         document.getElementById('patientForm').addEventListener('submit', function (e) {
@@ -171,83 +124,12 @@
                 .then(data => {
                     alert('Patient data saved successfully!');
                     document.getElementById('patientForm').reset();
+                    window.location.href = "/patients";
                 })
                 .catch(error => {
                     console.error('Error:', error);
                     alert('Error saving patient data');
                 });
-        });
-
-        document.getElementById('dosageTable').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const rows = document.querySelectorAll('.dosage-row');
-            const tableDataArray = [];
-
-            rows.forEach(row => {
-                const inputs = row.querySelectorAll('input');
-                const tableData = {
-                    dateMade: inputs[0].value,
-                    drug: inputs[1].value,
-                    doseNum: inputs[2].value,
-                    dueDate: inputs[3].value,
-                    timeDue: inputs[4].value,
-                    pChecked: inputs[5].checked,
-                };
-                tableDataArray.push(tableData);
-            });
-
-            fetch('/save-table-data', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(tableDataArray)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    alert('Dosage data saved successfully!');
-                    //document.getElementById('dosageTable').reset();
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error saving dosage data');
-                });
-        });
-
-        // Add row functionality
-        document.getElementById('addRowBtn').addEventListener('click', function () {
-            const tableBody = document.getElementById('dosageTableBody');
-            const newRow = document.createElement('tr');
-            newRow.className = 'dosage-row';
-            newRow.innerHTML = `
-                <td><input type="date" name="date_made[]" required></td>
-                <td><input type="text" name="drug[]" required></td>
-                <td><input type="number" name="dose_num[]" required></td>
-                <td><input type="date" name="due_date[]" required></td>
-                <td><input type="time" name="time_due[]" required></td>
-                <td><input type="checkbox" name="p_checked[]"></td>
-                <td><button type="button" class="remove-row-btn">Remove</button></td>
-            `;
-            tableBody.appendChild(newRow);
-            attachRemoveRowListener(newRow.querySelector('.remove-row-btn'));
-        });
-
-        // Remove row functionality
-        function attachRemoveRowListener(button) {
-            button.addEventListener('click', function () {
-                const row = this.closest('tr');
-                if (document.querySelectorAll('.dosage-row').length > 1) {
-                    row.remove();
-                } else {
-                    alert('You must keep at least one row!');
-                }
-            });
-        }
-
-        // Attach remove row listeners to initial row
-        document.querySelectorAll('.remove-row-btn').forEach(btn => {
-            attachRemoveRowListener(btn);
         });
     </script>
 </body>

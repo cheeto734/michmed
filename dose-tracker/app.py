@@ -94,6 +94,30 @@ def new_user_page():
         return redirect(url_for('index'))
     return render_template('new_user.html')
 
+@app.route('/patient_table/<user_url_slug>', methods=['GET'])
+def patient_table_page(user_url_slug):
+    if 'user_id' not in session:
+        return redirect(url_for('login_page'))
+    data = load_existing_data(DATA_FILE)
+    for record in data:
+        if int(record['registrationNumber']) == int(user_url_slug):
+            height = float(record["height"])
+            weight = float(record["weight"])
+            sex = record["sex"]
+            
+            bsa = equations.BSA(height, weight)
+            ibw = equations.IBW(height, sex)
+            adj_bw = equations.adj_BW(weight, ibw)
+            adj_bsa = equations.adj_BSA(height, weight)
+            
+            record["bsa"] = bsa
+            record["ibw"] = ibw
+            record["adj_bw"] = adj_bw
+            record["adj_bsa"] = adj_bsa
+            
+            return render_template('patient_table.html', **record)
+        
+    return redirect(url_for('patients_page'))
 
 @app.route('/new-user', methods=['POST'])
 def create_user():
