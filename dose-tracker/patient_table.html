@@ -56,111 +56,118 @@
 
     <br><br>
 
-    </table>
-    <form id="dosageTable">
-        <table id="dosageRows">
-            <caption>Dosage Table:</caption>
+    <form id="drugChecklistForm">
+        <fieldset>
+            <legend>Select drugs to schedule</legend>
+            <label><input type="checkbox" name="drug" value="Decitabine"> Decitabine</label><br>
+            <label><input type="checkbox" name="drug" value="Ifosfamide"> Ifosfamide</label><br>
+            <label><input type="checkbox" name="drug" value="Etoposide"> Etoposide</label><br>
+            <label><input type="checkbox" name="drug" value="Cytarabine"> Cytarabine</label>
+        </fieldset>
+        <br>
+        <input type="submit" value="Create Schedule">
+    </form>
+
+    <section id="scheduleSection" hidden>
+        <h2>Dosage Schedule</h2>
+        <table id="scheduleTable">
+            <caption>Schedule</caption>
             <thead>
                 <tr>
-                    <th>Date Made</th>
-                    <th>Drug and Dose</th>
+                    <th>Drug</th>
                     <th>Dose #</th>
-                    <th>Due Date(s)</th>
-                    <th>Time(s) Due</th>
-                    <th>Final Product Checked</th>
-                    <th>Action</th>
+                    <th>Dose Amount</th>
+                    <th>Due Date</th>
+                    <th>Time Due</th>
+                    <th>Dose Administered</th>
                 </tr>
             </thead>
-            <tbody id="dosageTableBody">
-                <tr class="dosage-row">
-                    <td><input type="date" name="date_made[]" required></td>
-                    <td><input type="text" name="drug[]" required></td>
-                    <td><input type="number" name="dose_num[]" required></td>
-                    <td><input type="date" name="due_date[]" required></td>
-                    <td><input type="time" name="time_due[]" required></td>
-                    <td><input type="checkbox" name="p_checked[]"></td>
-                    <td><button type="button" class="remove-row-btn">Remove</button></td>
-                </tr>
-            </tbody>
+            <tbody id="scheduleTableBody"></tbody>
         </table>
-
-        <button type="button" id="addRowBtn">+ Add Row</button>
-        <br><br>
-        <input type="submit" value="Submit">
-    </form>
+    </section>
 </body>
 
 <script>
-    document.getElementById('dosageTable').addEventListener('submit', function (e) {
+    const DRUG_SCHEDULES = {
+        Decitabine: { doses: 10, intervalHours: 24, amount: '20mg' },
+        Ifosfamide: { doses: 5, intervalHours: 24, amount: '1800mg' },
+        Etoposide: { doses: 5, intervalHours: 24, amount: '100mg' },
+        Cytarabine: { doses: 12, intervalHours: 12, amount: '3000mg' }
+    };
+
+    function formatDate(date) {
+        return date.toISOString().slice(0, 10);
+    }
+
+    function formatTime(date) {
+        return date.toTimeString().slice(0, 5);
+    }
+
+    function renderScheduleTable(rows) {
+        const tableBody = document.getElementById('scheduleTableBody');
+        tableBody.innerHTML = '';
+        rows.forEach(row => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${row.drug}</td>
+                <td>${row.doseNum}</td>
+                <td>${row.doseAmount}</td>
+                <td>${row.dueDate}</td>
+                <td>${row.timeDue}</td>
+                <td><input type="checkbox" ${row.doseAdministered ? 'checked' : ''}></td>
+            `;
+            tableBody.appendChild(tr);
+        });
+        document.getElementById('scheduleSection').hidden = false;
+    }
+
+    document.getElementById('drugChecklistForm').addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const rows = document.querySelectorAll('.dosage-row');
-        const tableDataArray = [];
+        const selectedDrugs = Array.from(document.querySelectorAll('input[name="drug"]:checked'))
+            .map(input => input.value);
 
-        rows.forEach(row => {
-            const inputs = row.querySelectorAll('input');
-            const tableData = {
-                dateMade: inputs[0].value,
-                drug: inputs[1].value,
-                doseNum: inputs[2].value,
-                dueDate: inputs[3].value,
-                timeDue: inputs[4].value,
-                pChecked: inputs[5].checked,
-            };
-            tableDataArray.push(tableData);
+        if (selectedDrugs.length === 0) {
+            alert('Please select at least one drug.');
+            return;
+        }
+
+        const startTimestamp = new Date();
+        const scheduleRows = [];
+
+        selectedDrugs.forEach(drug => {
+            const config = DRUG_SCHEDULES[drug];
+            for (let doseNum = 1; doseNum <= config.doses; doseNum++) {
+                const doseDate = new Date(startTimestamp.getTime() + (doseNum - 1) * config.intervalHours * 60 * 60 * 1000);
+                scheduleRows.push({
+                    drug,
+                    doseNum,
+                    doseAmount: config.amount,
+                    dueDate: formatDate(doseDate),
+                    timeDue: formatTime(doseDate),
+                    doseAdministered: false
+                });
+            }
         });
+
+        renderScheduleTable(scheduleRows);
+        document.getElementById('drugChecklistForm').hidden = true;
 
         fetch('/save-table-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(tableDataArray)
+            body: JSON.stringify(scheduleRows)
         })
             .then(response => response.json())
             .then(data => {
-                alert('Dosage data saved successfully!');
-                //document.getElementById('dosageTable').reset();
+                alert('Dosage schedule saved successfully!');
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Error saving dosage data');
+                alert('Error saving dosage schedule');
             });
-    });
-
-    // Add row functionality
-    document.getElementById('addRowBtn').addEventListener('click', function () {
-        const tableBody = document.getElementById('dosageTableBody');
-        const newRow = document.createElement('tr');
-        newRow.className = 'dosage-row';
-        newRow.innerHTML = `
-                <td><input type="date" name="date_made[]" required></td>
-                <td><input type="text" name="drug[]" required></td>
-                <td><input type="number" name="dose_num[]" required></td>
-                <td><input type="date" name="due_date[]" required></td>
-                <td><input type="time" name="time_due[]" required></td>
-                <td><input type="checkbox" name="p_checked[]"></td>
-                <td><button type="button" class="remove-row-btn">Remove</button></td>
-            `;
-        tableBody.appendChild(newRow);
-        attachRemoveRowListener(newRow.querySelector('.remove-row-btn'));
-    });
-
-    // Remove row functionality
-    function attachRemoveRowListener(button) {
-        button.addEventListener('click', function () {
-            const row = this.closest('tr');
-            if (document.querySelectorAll('.dosage-row').length > 1) {
-                row.remove();
-            } else {
-                alert('You must keep at least one row!');
-            }
-        });
-    }
-
-    // Attach remove row listeners to initial row
-    document.querySelectorAll('.remove-row-btn').forEach(btn => {
-        attachRemoveRowListener(btn);
     });
 </script>
 

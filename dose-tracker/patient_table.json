@@ -1,0 +1,830 @@
+[
+  {
+    "submissionTime": "2026-03-30T09:07:35.785642",
+    "doses": [
+      {
+        "drug": "Decitabine",
+        "doseNum": 1,
+        "doseAmount": "20mg",
+        "dueDate": "2026-03-30",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 2,
+        "doseAmount": "20mg",
+        "dueDate": "2026-03-31",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 3,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-01",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 4,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-02",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 5,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-03",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 6,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-04",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 7,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-05",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 8,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-06",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 9,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-07",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 10,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-08",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Ifosfamide",
+        "doseNum": 1,
+        "doseAmount": "1800mg",
+        "dueDate": "2026-03-30",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Ifosfamide",
+        "doseNum": 2,
+        "doseAmount": "1800mg",
+        "dueDate": "2026-03-31",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Ifosfamide",
+        "doseNum": 3,
+        "doseAmount": "1800mg",
+        "dueDate": "2026-04-01",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Ifosfamide",
+        "doseNum": 4,
+        "doseAmount": "1800mg",
+        "dueDate": "2026-04-02",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Ifosfamide",
+        "doseNum": 5,
+        "doseAmount": "1800mg",
+        "dueDate": "2026-04-03",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 1,
+        "doseAmount": "100mg",
+        "dueDate": "2026-03-30",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 2,
+        "doseAmount": "100mg",
+        "dueDate": "2026-03-31",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 3,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-01",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 4,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-02",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 5,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-03",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 1,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-03-30",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 2,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-03-31",
+        "timeDue": "21:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 3,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-03-31",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 4,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-01",
+        "timeDue": "21:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 5,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-01",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 6,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-02",
+        "timeDue": "21:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 7,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-02",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 8,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-03",
+        "timeDue": "21:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 9,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-03",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 10,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-04",
+        "timeDue": "21:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 11,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-04",
+        "timeDue": "09:07",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 12,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-05",
+        "timeDue": "21:07",
+        "doseAdministered": false
+      }
+    ]
+  },
+  {
+    "submissionTime": "2026-03-30T09:08:05.422404",
+    "doses": [
+      {
+        "drug": "Decitabine",
+        "doseNum": 1,
+        "doseAmount": "20mg",
+        "dueDate": "2026-03-30",
+        "timeDue": "09:08",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 2,
+        "doseAmount": "20mg",
+        "dueDate": "2026-03-31",
+        "timeDue": "09:08",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 3,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-01",
+        "timeDue": "09:08",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 4,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-02",
+        "timeDue": "09:08",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 5,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-03",
+        "timeDue": "09:08",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 6,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-04",
+        "timeDue": "09:08",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 7,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-05",
+        "timeDue": "09:08",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 8,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-06",
+        "timeDue": "09:08",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 9,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-07",
+        "timeDue": "09:08",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 10,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-08",
+        "timeDue": "09:08",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 1,
+        "doseAmount": "100mg",
+        "dueDate": "2026-03-30",
+        "timeDue": "09:08",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 2,
+        "doseAmount": "100mg",
+        "dueDate": "2026-03-31",
+        "timeDue": "09:08",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 3,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-01",
+        "timeDue": "09:08",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 4,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-02",
+        "timeDue": "09:08",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 5,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-03",
+        "timeDue": "09:08",
+        "doseAdministered": false
+      }
+    ]
+  },
+  {
+    "submissionTime": "2026-03-30T09:10:34.792993",
+    "doses": [
+      {
+        "drug": "Decitabine",
+        "doseNum": 1,
+        "doseAmount": "20mg",
+        "dueDate": "2026-03-30",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 2,
+        "doseAmount": "20mg",
+        "dueDate": "2026-03-31",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 3,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-01",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 4,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-02",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 5,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-03",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 6,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-04",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 7,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-05",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 8,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-06",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 9,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-07",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 10,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-08",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Ifosfamide",
+        "doseNum": 1,
+        "doseAmount": "1800mg",
+        "dueDate": "2026-03-30",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Ifosfamide",
+        "doseNum": 2,
+        "doseAmount": "1800mg",
+        "dueDate": "2026-03-31",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Ifosfamide",
+        "doseNum": 3,
+        "doseAmount": "1800mg",
+        "dueDate": "2026-04-01",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Ifosfamide",
+        "doseNum": 4,
+        "doseAmount": "1800mg",
+        "dueDate": "2026-04-02",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Ifosfamide",
+        "doseNum": 5,
+        "doseAmount": "1800mg",
+        "dueDate": "2026-04-03",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 1,
+        "doseAmount": "100mg",
+        "dueDate": "2026-03-30",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 2,
+        "doseAmount": "100mg",
+        "dueDate": "2026-03-31",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 3,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-01",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 4,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-02",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 5,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-03",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 1,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-03-30",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 2,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-03-31",
+        "timeDue": "21:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 3,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-03-31",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 4,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-01",
+        "timeDue": "21:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 5,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-01",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 6,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-02",
+        "timeDue": "21:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 7,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-02",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 8,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-03",
+        "timeDue": "21:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 9,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-03",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 10,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-04",
+        "timeDue": "21:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 11,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-04",
+        "timeDue": "09:10",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 12,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-05",
+        "timeDue": "21:10",
+        "doseAdministered": false
+      }
+    ]
+  },
+  {
+    "submissionTime": "2026-03-30T09:11:16.265630",
+    "doses": [
+      {
+        "drug": "Decitabine",
+        "doseNum": 1,
+        "doseAmount": "20mg",
+        "dueDate": "2026-03-30",
+        "timeDue": "09:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 2,
+        "doseAmount": "20mg",
+        "dueDate": "2026-03-31",
+        "timeDue": "09:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 3,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-01",
+        "timeDue": "09:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 4,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-02",
+        "timeDue": "09:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 5,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-03",
+        "timeDue": "09:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 6,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-04",
+        "timeDue": "09:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 7,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-05",
+        "timeDue": "09:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 8,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-06",
+        "timeDue": "09:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 9,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-07",
+        "timeDue": "09:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Decitabine",
+        "doseNum": 10,
+        "doseAmount": "20mg",
+        "dueDate": "2026-04-08",
+        "timeDue": "09:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 1,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-03-30",
+        "timeDue": "09:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 2,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-03-31",
+        "timeDue": "21:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 3,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-03-31",
+        "timeDue": "09:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 4,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-01",
+        "timeDue": "21:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 5,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-01",
+        "timeDue": "09:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 6,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-02",
+        "timeDue": "21:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 7,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-02",
+        "timeDue": "09:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 8,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-03",
+        "timeDue": "21:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 9,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-03",
+        "timeDue": "09:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 10,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-04",
+        "timeDue": "21:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 11,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-04",
+        "timeDue": "09:11",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Cytarabine",
+        "doseNum": 12,
+        "doseAmount": "3000mg",
+        "dueDate": "2026-04-05",
+        "timeDue": "21:11",
+        "doseAdministered": false
+      }
+    ]
+  }
+]
