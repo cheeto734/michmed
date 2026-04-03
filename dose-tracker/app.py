@@ -45,6 +45,34 @@ def save_data_json(data, filename):
         json.dump(json_file, f, indent=2)
 
 
+def load_latest_schedule(reg_num):
+    if not os.path.exists(TABLE_FILE):
+        return []
+
+    try:
+        with open(TABLE_FILE, 'r') as f:
+            saved_data = json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return []
+
+    if isinstance(saved_data, list):
+        for entry in reversed(saved_data):
+            if not isinstance(entry, dict):
+                continue
+            if str(entry.get('regNum')) != str(reg_num):
+                continue
+            doses = entry.get('doses', [])
+            if isinstance(doses, list):
+                return doses
+
+    if isinstance(saved_data, dict) and str(saved_data.get('regNum')) == str(reg_num):
+        doses = saved_data.get('doses', [])
+        if isinstance(doses, list):
+            return doses
+
+    return []
+
+
 @app.context_processor
 def inject_username():
     return {'username': session.get('username')}
@@ -114,6 +142,7 @@ def patient_table_page(user_url_slug):
             record["ibw"] = ibw
             record["adj_bw"] = adj_bw
             record["adj_bsa"] = adj_bsa
+            record["saved_schedule_rows"] = load_latest_schedule(record["registrationNumber"])
             
             return render_template('patient_table.html', **record)
         
@@ -234,17 +263,40 @@ def calculate_metrics():
 @app.route('/save-table-data', methods=['POST'])
 def save_table():
     try:
+        if 'user_id' not in session:
+            return jsonify({'status': 'error', 'message': 'Not authenticated'}), 401
+
         data = request.get_json()
-        
-        if isinstance(data, list):
-            submission_data = {
-                'submissionTime': datetime.now().isoformat(),
-                'doses': data
-            }
-        else:
-            submission_data = data
-        
-        save_data_json(submission_data, TABLE_FILE)
+
+        reg_num = data.get('regNum')
+        doses = data.get('doses')
+
+        if reg_num is None or not isinstance(doses, list):
+            return jsonify({'status': 'error', 'message': 'Missing schedule data'}), 400
+
+        submission_data = {
+            'submissionTime': datetime.now().isoformat(),
+            'regNum': reg_num,
+            'doses': doses
+        }
+
+        existing_data = load_existing_data(TABLE_FILE)
+        if not isinstance(existing_data, list):
+            existing_data = []
+
+        updated = False
+        for idx, entry in enumerate(existing_data):
+            if isinstance(entry, dict) and str(entry.get('regNum')) == str(reg_num):
+                existing_data[idx] = submission_data
+                updated = True
+                break
+
+        if not updated:
+            existing_data.append(submission_data)
+
+        with open(TABLE_FILE, 'w') as f:
+            json.dump(existing_data, f, indent=2)
+
         return jsonify({'status': 'success', 'message': 'Table data saved'}), 200
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500   
