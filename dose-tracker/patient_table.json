@@ -1,0 +1,134 @@
+[
+  {
+    "submissionTime": "2026-04-03T14:54:28.133769",
+    "regNum": "34",
+    "doses": [
+      {
+        "drug": "Etoposide",
+        "doseNum": 1,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-03",
+        "timeDue": "14:54",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 2,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-04",
+        "timeDue": "14:54",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 3,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-05",
+        "timeDue": "14:54",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 4,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-06",
+        "timeDue": "14:54",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 5,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-07",
+        "timeDue": "14:54",
+        "doseAdministered": false
+      }
+    ]
+  },
+  {
+    "submissionTime": "2026-04-03T14:58:40.864753",
+    "regNum": "1234",
+    "doses": [
+      {
+        "drug": "Ifosfamide",
+        "doseNum": 1,
+        "doseAmount": "1800mg",
+        "dueDate": "2026-04-03",
+        "timeDue": "14:58",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Ifosfamide",
+        "doseNum": 2,
+        "doseAmount": "1800mg",
+        "dueDate": "2026-04-04",
+        "timeDue": "14:58",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Ifosfamide",
+        "doseNum": 3,
+        "doseAmount": "1800mg",
+        "dueDate": "2026-04-05",
+        "timeDue": "14:58",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Ifosfamide",
+        "doseNum": 4,
+        "doseAmount": "1800mg",
+        "dueDate": "2026-04-06",
+        "timeDue": "14:58",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Ifosfamide",
+        "doseNum": 5,
+        "doseAmount": "1800mg",
+        "dueDate": "2026-04-07",
+        "timeDue": "14:58",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 1,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-03",
+        "timeDue": "14:58",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 2,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-04",
+        "timeDue": "14:58",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 3,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-05",
+        "timeDue": "14:58",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 4,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-06",
+        "timeDue": "14:58",
+        "doseAdministered": false
+      },
+      {
+        "drug": "Etoposide",
+        "doseNum": 5,
+        "doseAmount": "100mg",
+        "dueDate": "2026-04-07",
+        "timeDue": "14:58",
+        "doseAdministered": false
+      }
+    ]
+  }
+]

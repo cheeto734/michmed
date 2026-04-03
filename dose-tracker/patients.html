@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Patients</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='um-theme.css') }}">
 </head>
 
 <body>
+    <main class="container">
+    <div class="top-accent"></div>
     {% if username %}
-    <p>Signed in as: {{ username }}</p>
+    <p class="signed-in">Signed in as: {{ username }}</p>
     {% endif %}
 
     <h2>Your Patients</h2>
 
     {% if patients %}
+        <div class="patient-list">
         {% for patient in patients %}
-        <div>
+        <div class="patient-card">
             <a href="/patient_table/{{patient.regNum}}" >
                 <h3>{{ patient.firstName }} {{ patient.lastName }}</h3>
                 <p> # {{ patient.regNum }}</p>
@@ -23,6 +27,7 @@
 
         </div>
         {% endfor %}
+        </div>
     {% else %}
         <p>No patients saved yet.</p>
     {% endif %}
@@ -31,5 +36,6 @@
     <form method="POST" action="/logout">
         <input type="submit" value="Log Out">
     </form>
+    </main>
 </body>
 </html>

@@ -5,7 +5,7 @@ import sqlite3
 from datetime import datetime
 import equations
 
-app = Flask(__name__, template_folder='.', static_folder='.')
+app = Flask(__name__, template_folder='.', static_folder='static', static_url_path='/static')
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'dev-secret-key')
 
 DATA_FILE = 'patient_data.json'

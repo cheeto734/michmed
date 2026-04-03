@@ -5,11 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='um-theme.css') }}">
 </head>
 
 <body>
+    <main class="container">
+    <div class="top-accent"></div>
     {% if username %}
-    <p>Signed in as: {{ username }}</p>
+    <p class="signed-in">Signed in as: {{ username }}</p>
     {% endif %}
     <a href="/patients">Home</a>
     <table>
@@ -99,6 +102,7 @@
             "savedScheduleRows": {{ saved_schedule_rows | tojson }}
         }
     </script>
+    </main>
 </body>
 
 <script>
