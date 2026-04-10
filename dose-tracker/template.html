@@ -16,7 +16,7 @@
     <p class="signed-in">Signed in as: {{ username }}</p>
     {% endif %}
     <a href="/patients">Home</a>
-    <h2>TEMPLATE FORM</h2>
+    <h2>Patient Form</h2>
     <form id="patientForm">
         <label for="firstname">First name:</label><br>
         <input type="text" id="firstname" name="firstname" required><br>
@@ -30,10 +30,10 @@
         <label for="age">Age:</label><br>
         <input type="number" id="age" name="age" required><br>
 
-        <label for="height">Height:</label><br>
+        <label for="height">Height (cm):</label><br>
         <input type="number" id="height" name="height" required><br>
 
-        <label for="weight">Weight:</label><br>
+        <label for="weight">Weight (kg):</label><br>
         <input type="number" id="weight" name="weight" required><br><br>
 
         <label for="sex">Sex:</label><br>
@@ -98,23 +98,6 @@
                 submissionTime: new Date().toISOString()
             };
 
-
-            fetch('/calculate', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            })
-                .then(response => response.json())
-                .then(data => {
-
-                    document.getElementById("bsa").textContent = data.bsa.toFixed(2);
-                    document.getElementById("ibw").textContent = data.ibw.toFixed(2);
-                    document.getElementById("adj_bw").textContent = data.adj_bw.toFixed(2);
-                    document.getElementById("adj_bsa").textContent = data.adj_bsa.toFixed(2);
-
-                });
 
             fetch('/save-patient-data', {
                 method: 'POST',

@@ -12,6 +12,7 @@ DATA_FILE = 'patient_data.json'
 TABLE_FILE = 'patient_table.json'
 DB_FILE = 'dose_tracker.db'
 SCHEMA_FILE = os.path.join('sql', 'schema.sql')
+DRUG_FILE = 'drug_list.json'
 
 
 def get_db_connection():
@@ -38,12 +39,19 @@ def load_existing_data(filename):
             return json.load(f)
     return []
         
-def save_data_json(data, filename):
+def save_data_json_list(data, filename):
     json_file = load_existing_data(filename)
     json_file.append(data)
     with open(filename, 'w') as f:
         json.dump(json_file, f, indent=2)
 
+def save_data_json_dict(key, value, filename):
+    json_file = load_existing_data(filename)
+
+    json_file[key] = value
+
+    with open(filename, "w") as f:
+        json.dump(json_file, f, indent=2)
 
 def load_latest_schedule(reg_num):
     if not os.path.exists(TABLE_FILE):
@@ -127,6 +135,10 @@ def patient_table_page(user_url_slug):
     if 'user_id' not in session:
         return redirect(url_for('login_page'))
     data = load_existing_data(DATA_FILE)
+    
+    with open("drug_list.json") as f:
+        drug_list = json.load(f)
+        
     for record in data:
         if int(record['registrationNumber']) == int(user_url_slug):
             height = float(record["height"])
@@ -144,7 +156,7 @@ def patient_table_page(user_url_slug):
             record["adj_bsa"] = adj_bsa
             record["saved_schedule_rows"] = load_latest_schedule(record["registrationNumber"])
             
-            return render_template('patient_table.html', **record)
+            return render_template('patient_table.html', **record, drug_list=drug_list)
         
     return redirect(url_for('patients_page'))
 
@@ -232,7 +244,7 @@ def save_data():
             )
             conn.commit()
 
-        save_data_json(data, DATA_FILE)
+        save_data_json_list(data, DATA_FILE)
         return jsonify({'status': 'success', 'message': 'Patient data saved'}), 200
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
@@ -300,7 +312,35 @@ def save_table():
         return jsonify({'status': 'success', 'message': 'Table data saved'}), 200
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500   
+
+@app.route('/update_drug_list', methods=['POST'])
+def update_drugs():
+    try:
+        if 'user_id' not in session:
+            return jsonify({'status': 'error', 'message': 'Not authenticated'}), 401
+
+        data = request.get_json()
+        print(data)
+
+        new_drug_name = data['new_name']
+        new_drug_doses = data['new_doses']
+        new_drug_amount = data['new_amount']
+        new_drug_interval = data['new_interval']
         
+        print(new_drug_name)
+
+        #todo
+        save_data_json_dict(new_drug_name,
+                            {"doses": new_drug_doses,
+                             "intervalHours": new_drug_interval,
+                             "amount": new_drug_amount},
+                             DRUG_FILE)
+        
+
+        return jsonify({'status': 'success', 'message': 'New drug saved'}), 200
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': str(e)}), 500   
+           
 if __name__ == '__main__':
     init_db()
     app.run(debug=True)

@@ -10,119 +10,161 @@
 
 <body>
     <main class="container">
-    <div class="top-accent"></div>
-    {% if username %}
-    <p class="signed-in">Signed in as: {{ username }}</p>
-    {% endif %}
-    <a href="/patients">Home</a>
-    <table>
-        <caption>Calculations:</caption>
-        <tr>
-            <th>BSA</th>
-            <td id="bsa"> {{ bsa }} </td>
-            <th>IBW</th>
-            <td id="ibw"> {{ ibw }} </td>
-        </tr>
-        <tr>
-            <th>Adj. BW</th>
-            <td id="adj_bw"> {{ adj_bw }} </td>
-            <th>Adj. BSA</th>
-            <td id="adj_bsa"> {{ adj_bsa}} </td>
-        </tr>
-    </table>
-
-    <br><br>
-
-    <table>
-        <caption>Patient Data:</caption>
-        <tr>
-            <th>First Name</th>
-            <td id="bsa"> {{ firstName }} </td>
-            <th>Last Name</th>
-            <td id="ibw"> {{ lastName }} </td>
-            <th>Sex</th>
-            <td id="ibw"> {{ sex }} </td>
-            <th>Registration Number</th>
-            <td id="regNum"> {{ registrationNumber }} </td>
-        </tr>
-        <tr>
-            <th>Height</th>
-            <td id="adj_bw"> {{ height}} </td>
-            <th>Weight</th>
-            <td id="adj_bw"> {{ weight }} </td>
-            <th>Age</th>
-            <td id="adj_bsa"> {{ age }} </td>
-            <th>Hospital</th>
-            <td id="adj_bsa"> {{ hospitalLocation }} </td>
-        </tr>
-    </table>
-
-    <br><br>
-
-    <form id="drugChecklistForm">
-        <fieldset>
-            <legend>Select drugs to schedule</legend>
-            <label><input type="checkbox" name="drug" value="Decitabine"> Decitabine</label><br>
-            <label><input type="checkbox" name="drug" value="Ifosfamide"> Ifosfamide</label><br>
-            <label><input type="checkbox" name="drug" value="Etoposide"> Etoposide</label><br>
-            <label><input type="checkbox" name="drug" value="Cytarabine"> Cytarabine</label>
-        </fieldset>
-        <br>
-        <input type="submit" value="Create Schedule">
-    </form>
-
-    <section id="scheduleSection" hidden>
-        <h2>Dosage Schedule</h2>
-        <p class="note">Use Edit Table to make changes, then Save Table to persist them.</p>
-        <div class="actions">
-            <button type="button" id="editScheduleBtn">Edit Table</button>
-            <button type="button" id="addRowBtn">Add Row</button>
-            <button type="button" class="secondary" id="saveScheduleBtn">Save Table</button>
-        </div>
-        <table id="scheduleTable">
-            <caption>Schedule</caption>
-            <thead>
-                <tr>
-                    <th>Drug</th>
-                    <th>Dose #</th>
-                    <th>Dose Amount</th>
-                    <th>Due Date</th>
-                    <th>Time Due</th>
-                    <th>Dose Administered</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="scheduleTableBody"></tbody>
+        <div class="top-accent"></div>
+        {% if username %}
+        <p class="signed-in">Signed in as: {{ username }}</p>
+        {% endif %}
+        <a href="/patients">Home</a>
+        <table>
+            <caption>Calculations:</caption>
+            <tr>
+                <th>BSA</th>
+                <td id="bsa"> {{ "%.2f"|format(bsa) }} </td>
+                <th>IBW</th>
+                <td id="ibw"> {{ "%.2f"|format(ibw) }} </td>
+            </tr>
+            <tr>
+                <th>Adj. BW</th>
+                <td id="adj_bw"> {{ "%.2f"|format(adj_bw) }} </td>
+                <th>Adj. BSA</th>
+                <td id="adj_bsa"> {{ "%.2f"|format(adj_bsa) }} </td>
+            </tr>
         </table>
-    </section>
 
-    <script id="scheduleBootstrap" type="application/json">
+        <br><br>
+
+        <table>
+            <caption>Patient Data:</caption>
+            <tr>
+                <th>First Name</th>
+                <td id="bsa"> {{ firstName }} </td>
+                <th>Last Name</th>
+                <td id="ibw"> {{ lastName }} </td>
+                <th>Sex</th>
+                <td id="ibw"> {{ sex }} </td>
+                <th>Registration Number</th>
+                <td id="regNum"> {{ registrationNumber }} </td>
+            </tr>
+            <tr>
+                <th>Height (cm)</th>
+                <td id="adj_bw"> {{ height}} </td>
+                <th>Weight (kg)</th>
+                <td id="adj_bw"> {{ weight }} </td>
+                <th>Age</th>
+                <td id="adj_bsa"> {{ age }} </td>
+                <th>Hospital</th>
+                <td id="adj_bsa"> {{ hospitalLocation }} </td>
+            </tr>
+        </table>
+
+        <br><br>
+
+        <section id="scheduleSection">
+            <h2 id="scheduleHeading">Dosage Schedule</h2>
+            <p class="note" id="scheduleNote">Use Edit Table to make changes, then Save Table to persist them.</p>
+            <form id="drugChecklistForm" class="drug-checklist-form">
+                <fieldset>
+                    <legend>Select drugs to schedule</legend>
+                    {% for drug in drug_list.keys() %}
+                    <label>
+                        <input type="checkbox" name="drug" value="{{ drug }}"> {{ drug }}
+                    </label>
+                    <br>
+                    {% endfor %}
+                    <button type="button" id="new_drug_button" style="margin-top: 10px;">New Drug</button>
+                    <div id="new-drug-fields" style="display: none; margin-top: 10px;">
+                        <div id="newDrugForm">
+                            <input type="text" id="drug-name" placeholder="Drug name">
+                            <input type="number" id="drug-doses" placeholder="Number of doses">
+                            <input type="text" id="drug-amount" placeholder="Dosage amount (mg)">
+                            <input type="number" id="drug-interval" placeholder="Interval (hours)">
+                            <button type="button" id="addNewDrugBtn">Add</button>
+                        </div>
+                    </div>
+                </fieldset>
+                <br>
+                <input type="submit" id="createScheduleBtn" value="Create Schedule">
+                <button type="button" class="secondary" id="cancelScheduleBuildBtn" hidden>Cancel</button>
+            </form>
+            <div class="actions">
+                <button type="button" id="editScheduleBtn">Edit Table</button>
+                <button type="button" id="newFullScheduleBtn" hidden>Add Drug Schedule</button>
+                <button type="button" id="addRowBtn">Add Row</button>
+                <button type="button" class="secondary" id="saveScheduleBtn">Save Table</button>
+            </div>
+            <table id="scheduleTable">
+                <caption>Schedule</caption>
+                <colgroup>
+                    <col style="width: 25%;">
+                    <col style="width: 10%;">
+                    <col style="width: 15%;">
+                    <col style="width: 15%;">
+                    <col style="width: 15%;">
+                    <col style="width: 20%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>Drug</th>
+                        <th>Dose #</th>
+                        <th>Dose Amount</th>
+                        <th>Due Date</th>
+                        <th>Time Due</th>
+                        <th>Dose Administered</th>
+                        <th class="action-col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="scheduleTableBody"></tbody>
+            </table>
+        </section>
+
+        <script id="scheduleBootstrap" type="application/json">
         {
             "registrationNumber": {{ registrationNumber | tojson }},
-            "savedScheduleRows": {{ saved_schedule_rows | tojson }}
+            "savedScheduleRows": {{ saved_schedule_rows | tojson }},
+            "drugList": {{ drug_list | tojson }}
         }
     </script>
     </main>
 </body>
 
 <script>
-    const DRUG_SCHEDULES = {
-        Decitabine: { doses: 10, intervalHours: 24, amount: '20mg' },
-        Ifosfamide: { doses: 5, intervalHours: 24, amount: '1800mg' },
-        Etoposide: { doses: 5, intervalHours: 24, amount: '100mg' },
-        Cytarabine: { doses: 12, intervalHours: 12, amount: '3000mg' }
-    };
-
     const scheduleBootstrap = JSON.parse(document.getElementById('scheduleBootstrap').textContent || '{}');
+    const DRUG_SCHEDULES = scheduleBootstrap.drugList;
     const currentRegistrationNumber = scheduleBootstrap.registrationNumber;
     const savedScheduleRows = Array.isArray(scheduleBootstrap.savedScheduleRows) ? scheduleBootstrap.savedScheduleRows : [];
     const scheduleSection = document.getElementById('scheduleSection');
+    const scheduleHeading = document.getElementById('scheduleHeading');
+    const scheduleNote = document.getElementById('scheduleNote');
+    const scheduleTable = document.getElementById('scheduleTable');
     const scheduleTableBody = document.getElementById('scheduleTableBody');
     const editScheduleBtn = document.getElementById('editScheduleBtn');
+    const newFullScheduleBtn = document.getElementById('newFullScheduleBtn');
     const addRowBtn = document.getElementById('addRowBtn');
     const saveScheduleBtn = document.getElementById('saveScheduleBtn');
     const drugChecklistForm = document.getElementById('drugChecklistForm');
+    const createScheduleBtn = document.getElementById('createScheduleBtn');
+    const cancelScheduleBuildBtn = document.getElementById('cancelScheduleBuildBtn');
     let isEditing = false;
+    let scheduleBuildMode = 'replace';
+    let editSnapshotRows = null;
+    let scheduleHasBeenSaved = Array.isArray(savedScheduleRows) && savedScheduleRows.length > 0;
+
+    function cloneScheduleRows(rows) {
+        return rows.map(row => ({ ...row }));
+    }
+
+    function showEmptyScheduleBuilder() {
+        scheduleTableBody.innerHTML = '';
+        scheduleSection.hidden = false;
+        scheduleTable.hidden = true;
+        scheduleHeading.hidden = true;
+        scheduleNote.hidden = true;
+        editScheduleBtn.hidden = true;
+        drugChecklistForm.hidden = false;
+        cancelScheduleBuildBtn.hidden = true;
+        scheduleBuildMode = 'replace';
+        setEditingMode(false);
+    }
 
     function getDrugOptions(selectedDrug) {
         const drugNames = Object.keys(DRUG_SCHEDULES);
@@ -142,6 +184,10 @@
         return date.toTimeString().slice(0, 5);
     }
 
+    function updateDoseRowCompletedStyle(rowElement, isCompleted) {
+        rowElement.classList.toggle('dose-completed', Boolean(isCompleted));
+    }
+
     function createEditableRow(row = {}) {
         const tr = document.createElement('tr');
         tr.className = 'dosage-row';
@@ -156,7 +202,7 @@
             <td><input class="table-input" data-field="dueDate" type="date" required></td>
             <td><input class="table-input" data-field="timeDue" type="time" required></td>
             <td style="text-align: center;"><input data-field="doseAdministered" type="checkbox"></td>
-            <td><button type="button" class="danger remove-row-btn">Remove</button></td>
+            <td class="action-col"><button type="button" class="danger remove-row-btn">Remove</button></td>
         `;
 
         tr.querySelector('[data-field="drug"]').value = row.drug || '';
@@ -164,7 +210,12 @@
         tr.querySelector('[data-field="doseAmount"]').value = row.doseAmount || '';
         tr.querySelector('[data-field="dueDate"]').value = row.dueDate || '';
         tr.querySelector('[data-field="timeDue"]').value = row.timeDue || '';
-        tr.querySelector('[data-field="doseAdministered"]').checked = Boolean(row.doseAdministered);
+        const doseAdministeredCheckbox = tr.querySelector('[data-field="doseAdministered"]');
+        doseAdministeredCheckbox.checked = Boolean(row.doseAdministered);
+        updateDoseRowCompletedStyle(tr, doseAdministeredCheckbox.checked);
+        doseAdministeredCheckbox.addEventListener('change', function () {
+            updateDoseRowCompletedStyle(tr, this.checked);
+        });
 
         attachRemoveRowListener(tr.querySelector('.remove-row-btn'));
         return tr;
@@ -174,11 +225,21 @@
         isEditing = Boolean(editing);
 
         editScheduleBtn.textContent = isEditing ? 'Cancel Edit' : 'Edit Table';
+        createScheduleBtn.value = isEditing ? 'Add Schedule' : 'Create Schedule';
+        newFullScheduleBtn.hidden = !isEditing;
         addRowBtn.hidden = !isEditing;
         saveScheduleBtn.hidden = !isEditing;
 
         scheduleTableBody.querySelectorAll('input, select, button.remove-row-btn').forEach(element => {
             element.disabled = !isEditing;
+        });
+
+        scheduleTableBody.querySelectorAll('button.remove-row-btn').forEach(button => {
+            button.hidden = !isEditing;
+        });
+
+        document.querySelectorAll('.action-col').forEach(columnCell => {
+            columnCell.hidden = !isEditing;
         });
     }
 
@@ -187,8 +248,12 @@
         rows.forEach(row => {
             scheduleTableBody.appendChild(createEditableRow(row));
         });
-        scheduleSection.hidden = rows.length === 0;
-        if (!scheduleSection.hidden) {
+        scheduleSection.hidden = false;
+        scheduleTable.hidden = rows.length === 0;
+        scheduleHeading.hidden = rows.length === 0;
+        scheduleNote.hidden = rows.length === 0;
+        editScheduleBtn.hidden = rows.length === 0;
+        if (rows.length > 0) {
             setEditingMode(false);
         }
     }
@@ -227,6 +292,7 @@
         const selectedDrugs = Array.from(document.querySelectorAll('input[name="drug"]:checked'))
             .map(input => input.value);
 
+
         if (selectedDrugs.length === 0) {
             alert('Please select at least one drug.');
             return;
@@ -250,13 +316,133 @@
             }
         });
 
-        renderScheduleTable(scheduleRows);
+        if (scheduleBuildMode === 'append' && scheduleTableBody.children.length > 0) {
+            const existingRows = collectScheduleRows();
+            renderScheduleTable(existingRows.concat(scheduleRows));
+        } else {
+            renderScheduleTable(scheduleRows);
+        }
+
+        scheduleBuildMode = 'replace';
+        document.querySelectorAll('input[name="drug"]').forEach(input => {
+            input.checked = false;
+        });
+        cancelScheduleBuildBtn.hidden = true;
         drugChecklistForm.hidden = true;
         setEditingMode(true);
     });
 
+    const newDrugButton = document.getElementById("new_drug_button");
+    const newDrugFields = document.getElementById("new-drug-fields");
+    const addNewDrugBtn = document.getElementById('addNewDrugBtn');
+
+    function openNewFullScheduleBuilder() {
+        scheduleBuildMode = 'append';
+        document.querySelectorAll('input[name="drug"]').forEach(input => {
+            input.checked = false;
+        });
+
+        newDrugFields.style.display = 'none';
+        newDrugButton.textContent = 'New Drug';
+        cancelScheduleBuildBtn.hidden = false;
+        drugChecklistForm.hidden = false;
+        setEditingMode(true);
+    }
+
+    function cancelNewScheduleBuilder() {
+        scheduleBuildMode = 'replace';
+        document.querySelectorAll('input[name="drug"]').forEach(input => {
+            input.checked = false;
+        });
+        newDrugFields.style.display = 'none';
+        newDrugButton.textContent = 'New Drug';
+        cancelScheduleBuildBtn.hidden = true;
+        drugChecklistForm.hidden = true;
+        if (scheduleTableBody.children.length > 0) {
+            setEditingMode(true);
+        }
+    }
+
+    newDrugButton.addEventListener("click", function () {
+        const isHidden = newDrugFields.style.display === "none";
+        newDrugFields.style.display = isHidden ? "block" : "none";
+        newDrugButton.textContent = isHidden ? "Cancel" : "New Drug";
+    });
+
+    newFullScheduleBtn.addEventListener('click', function () {
+        openNewFullScheduleBuilder();
+    });
+
+    cancelScheduleBuildBtn.addEventListener('click', function () {
+        cancelNewScheduleBuilder();
+    });
+
+    addNewDrugBtn.addEventListener('click', function () {
+        const nameInput = document.getElementById('drug-name');
+        const dosesInput = document.getElementById('drug-doses');
+        const amountInput = document.getElementById('drug-amount');
+        const intervalInput = document.getElementById('drug-interval');
+
+        const drugName = nameInput.value.trim();
+        const doses = Number(dosesInput.value);
+        const amount = amountInput.value.trim();
+        const intervalHours = Number(intervalInput.value);
+
+        if (!drugName || !amount || !Number.isFinite(doses) || doses < 1 || !Number.isFinite(intervalHours) || intervalHours < 1) {
+            alert('Enter valid drug details before adding.');
+            return;
+        }
+
+        DRUG_SCHEDULES[drugName] = { doses, intervalHours, amount };
+        fetch('/update_drug_list', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                new_name: drugName,
+                new_doses: doses,
+                new_amount: amount,
+                new_interval: intervalHours
+            })
+        });
+
+        const fieldset = drugChecklistForm.querySelector('fieldset');
+        const label = document.createElement('label');
+        label.innerHTML = `<input type="checkbox" name="drug" value="${drugName}" checked> ${drugName}`;
+
+        const br = document.createElement('br');
+        fieldset.insertBefore(br, newDrugButton);
+        fieldset.insertBefore(label, br);
+
+        nameInput.value = '';
+        dosesInput.value = '';
+        amountInput.value = '';
+        intervalInput.value = '';
+        newDrugFields.style.display = 'none';
+        newDrugButton.textContent = 'New Drug';
+    });
+
+
+
     editScheduleBtn.addEventListener('click', function () {
-        setEditingMode(!isEditing);
+        if (!isEditing) {
+            editSnapshotRows = scheduleHasBeenSaved ? cloneScheduleRows(collectScheduleRows()) : [];
+            setEditingMode(true);
+            return;
+        }
+
+        if (!scheduleHasBeenSaved) {
+            editSnapshotRows = null;
+            showEmptyScheduleBuilder();
+            return;
+        }
+
+        if (Array.isArray(editSnapshotRows)) {
+            renderScheduleTable(editSnapshotRows);
+        }
+        editSnapshotRows = null;
+        setEditingMode(false);
     });
 
     addRowBtn.addEventListener('click', function () {
@@ -294,6 +480,8 @@
                     throw new Error(data.message || 'Error saving dosage data');
                 }
                 alert('Dosage data saved successfully!');
+                scheduleHasBeenSaved = true;
+                editSnapshotRows = null;
                 setEditingMode(false);
             })
             .catch(error => {
@@ -320,6 +508,13 @@
     if (Array.isArray(savedScheduleRows) && savedScheduleRows.length > 0) {
         renderScheduleTable(savedScheduleRows);
         drugChecklistForm.hidden = true;
+    } else {
+        scheduleSection.hidden = false;
+        scheduleTable.hidden = true;
+        scheduleHeading.hidden = true;
+        scheduleNote.hidden = true;
+        editScheduleBtn.hidden = true;
+        setEditingMode(false);
     }
 </script>
 
