@@ -55,6 +55,10 @@
                 <th>Hospital</th>
                 <td id="adj_bsa"> {{ hospitalLocation }} </td>
             </tr>
+            <tr>
+                <th>Room Number</th>
+                <td colspan="7"> {{ roomNumber }} </td>
+            </tr>
         </table>
 
         <br><br>
@@ -184,6 +188,13 @@
         return date.toTimeString().slice(0, 5);
     }
 
+    function compareScheduleRowsByDueDate(a, b) {
+        if (a.dueDate !== b.dueDate) {
+            return a.dueDate.localeCompare(b.dueDate);
+        }
+        return a.timeDue.localeCompare(b.timeDue);
+    }
+
     function updateDoseRowCompletedStyle(rowElement, isCompleted) {
         rowElement.classList.toggle('dose-completed', Boolean(isCompleted));
     }
@@ -245,7 +256,8 @@
 
     function renderScheduleTable(rows) {
         scheduleTableBody.innerHTML = '';
-        rows.forEach(row => {
+        const sortedRows = rows.slice().sort(compareScheduleRowsByDueDate);
+        sortedRows.forEach(row => {
             scheduleTableBody.appendChild(createEditableRow(row));
         });
         scheduleSection.hidden = false;

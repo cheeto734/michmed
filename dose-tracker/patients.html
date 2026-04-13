@@ -18,13 +18,17 @@
 
     {% if patients %}
         <div class="patient-list">
-        {% for patient in patients %}
+        {% for patient in patients|sort(attribute='hospitalLocation') %}
         <div class="patient-card">
-            <a href="/patient_table/{{patient.regNum}}" >
+            <a href="/patient_table/{{patient.regNum}}">
                 <h3>{{ patient.firstName }} {{ patient.lastName }}</h3>
                 <p> # {{ patient.regNum }}</p>
+                <p> Hospital: {{ patient.hospitalLocation }}</p>
+                {% set drug_names = patient.drugList if patient.drugList is defined else patient.drugs if patient.drugs is defined else [] %}
+                {% if drug_names %}
+                <p> Drugs: {{ drug_names | join(', ') }}</p>
+                {% endif %}
             </a>
-
         </div>
         {% endfor %}
         </div>

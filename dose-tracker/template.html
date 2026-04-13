@@ -49,29 +49,32 @@
         <label for="startdate">Start date:</label><br>
         <input type="date" id="startdate" name="startdate" required><br><br>
 
-        <label for="location">Hospital location:</label><br>
-        <label>
-            <input type="radio" name="location" value="7E" required>
-            7E
-        </label><br>
+            <label for="location">Hospital location:</label><br>
+    <label>
+        <input type="radio" name="location" value="7E" required>
+        7E
+    </label><br>
 
-        <label>
-            <input type="radio" name="location" value="7W">
-            7W
-        </label><br>
+    <label>
+        <input type="radio" name="location" value="7W">
+        7W
+    </label><br>
 
-        <label>
-            <input type="radio" name="location" value="8E">
-            8E
-        </label><br>
+    <label>
+        <input type="radio" name="location" value="8E">
+        8E
+    </label><br>
 
-        <label>
-            <input type="radio" name="location" value="other">
-            Other
-            <input type="text" id="otherLocation" name="otherLocation">
-        </label><br><br>
+    <label>
+        <input type="radio" name="location" value="other">
+        Other
+        <input type="text" id="otherLocation" name="otherLocation">
+    </label><br><br>
 
-        <input type="submit" value="Submit">
+    <label for="roomNumber">Room number (optional):</label><br>
+    <input type="text" id="roomNumber" name="roomNumber"><br><br>
+
+    <input type="submit" value="Submit">
     </form>
 
     <br><br>
@@ -95,6 +98,7 @@
                 sex: sex,
                 startDate: document.getElementById('startdate').value,
                 hospitalLocation: finalLocation,
+                roomNumber: document.getElementById('roomNumber').value,
                 submissionTime: new Date().toISOString()
             };
 
