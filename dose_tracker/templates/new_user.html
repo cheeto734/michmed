@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Create new account</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='um-theme.css') }}">
+    </head>
+
+    <body>
+        <main class="container">
+        <div class="top-accent"></div>
+        <h2>Create New User</h2>
+        {% if error %}
+        <p class="status-error">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST" action="/new-user">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required><br>
+
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required><br><br>
+
+            <input type="submit" value="Create Account">
+        </form>
+
+        <br>
+        <a href="/login">Back to login</a>
+        </main>
+    </body>
+</html>
