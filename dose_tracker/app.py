@@ -3,7 +3,7 @@ import json
 import os
 import sqlite3
 from datetime import datetime
-import equations
+from dose_tracker import equations
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
